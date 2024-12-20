@@ -1,0 +1,34 @@
+type Mutation{
+    createEmployee(input: EmployeeInput): EmployeeDTO
+    updateEmployee(id: ID!, input: EmployeeInput): EmployeeDTO
+    deleteEmployee(id: ID!): EmployeeDTO
+}
+
+
+type Query{
+    findAllEmployees: [EmployeeDTO]
+    getEmployee(id: ID!): EmployeeDTO
+}
+
+type ResponseDTO {
+    data: [EmployeeDTO]
+}
+
+
+
+type EmployeeDTO{
+    id: ID!
+    name: String!
+    age: Int!
+    empClass: String!
+    subjects: String!
+    attendance: Float!
+}
+
+input EmployeeInput{
+    name: String!
+    age: Int!
+    empClass: String!
+    subjects: String!
+    attendance: Float!
+}

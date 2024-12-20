@@ -1,0 +1,24 @@
+server:
+  port: 9200
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employee_managements
+    username: postgres
+    password: Divya@123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Exclude security auto-configuration to disable security
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#graphql:
+#  servlet:
+#    mapping: /apis/graphql
