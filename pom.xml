@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0</version>
+		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>employee_management</groupId>
@@ -29,6 +29,8 @@
 	<properties>
 		<java.version>21</java.version>
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
+		<jib.version>3.2.0</jib.version>
+		<image.version>0.0.1-SNAPSHOT</image.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -244,6 +246,48 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.0</version> <!-- Update to the latest version -->
+				<configuration>
+					<from>
+						<image>openjdk:21-oracle</image> <!-- Use Java 21 as specified in your project -->
+
+					</from>
+					<to>
+						<image>anshikapandey019/graphql</image> <!-- Update to your repository -->
+						<tags>
+							 <!-- Use your project version -->
+							<tag>latest</tag>
+						</tags>
+						<auth>
+							<username>anshikapandey019</username> <!-- Replace with your Docker Hub username -->
+							<password>Anshika@123</password> <!-- Replace with your Docker Hub password -->
+						</auth>
+					</to>
+					<containerizingMode>packaged</containerizingMode>
+					<container>
+						<jvmFlags>
+							<jvmFlag>-Xms512m</jvmFlag>
+							<jvmFlag>-Xdebug</jvmFlag>
+						</jvmFlags>
+						<ports>
+							<port>8080</port>
+						</ports>
+						<format>Docker</format>
+					</container>
+				</configuration>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
